@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { preview } from "../assets";
-import { FormField, Loader } from "../components";
+import { FormField, Loader, Loader2 } from "../components";
 import { getRandomPrompt } from "../utils";
 
 const CreatePost = () => {
@@ -58,33 +58,52 @@ const CreatePost = () => {
       </div>
       <form className="mt-16 p-3" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5 ">
-          <FormField
-            labelName="Your name"
-            type="text"
-            name="name"
-            placeholder="John Doe"
-            value={form.name}
-            handleChange={handleChange}
-          />
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <label className="block text-sm font-m text-gray-900">Your name</label>
+            </div>
+            <div className="flex">
+              <input
+                className="text-gray-900 text-sm rouned-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline-none block  p-3 drop-shadow rounded-md w-full"
+                type="text"
+                placeholder="John Doe"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <label className="block text-sm font-m text-gray-900">Prompt</label>
+              <button
+                type="button"
+                onClick={handleSurpriseMe}
+                className="font-semibold text-xs bg-[#ECECF1] py-1 px-2 rounded-[5px] text-black"
+              >
+                Surprie Me
+              </button>
+            </div>
+            <div className="flex">
+              <input
+                className="text-gray-900 text-sm rouned-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline-none block  p-3 drop-shadow rounded-l-md w-full"
+                type="text"
+                placeholder="A Synthwave Hedgehog, Blade Runner Cyberpunk"
+                name="prompt"
+                value={form.prompt}
+                onChange={handleChange}
+              />
+              <button
+                type="button"
+                onClick={genrateImage}
+                className="text-gray-900 bg-white font-medium rounded-r-md text-sm
+               sm:w-auto px-5 py-2.5 text-center border-1 shadow border-black hover:bg-black hover:text-white"
+              >
+                {generatingImg ? <strong>Generating..</strong> : <strong> Generate </strong>}
+              </button>
+            </div>
+          </div>
 
-          <FormField
-            labelName="Prompt"
-            type="text"
-            name="prompt"
-            placeholder="A Synthwave Hedgehog, Blade Runner Cyberpunk"
-            value={form.prompt}
-            handleChange={handleChange}
-            isSurpriseMe
-            handleSurpriseMe={handleSurpriseMe}
-          />
-          <button
-            type="button"
-            onClick={genrateImage}
-            className="text-white bg-green-700 font-medium rounded-md text-sm
-             w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            {generatingImg ? "Generating.." : "Generate"}
-          </button>
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 tex-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 justify-center items-center">
             {form.photo ? (
               <img src={form.photo} alt={form.prompt} className="w-full h-full object-contain" />
