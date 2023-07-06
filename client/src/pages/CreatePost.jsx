@@ -76,7 +76,6 @@ const CreatePost = () => {
         <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
         <p className="mt-2 text-[#666e75] tex-[16px] max-w[500px]">
           Create imaginative and visually stunning image through and share them with the community
-          DALL-E AI
         </p>
       </div>
       <form className="mt-16 p-3" onSubmit={handleSubmit}>
